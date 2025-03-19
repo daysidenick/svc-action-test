@@ -2,10 +2,7 @@ FROM ubuntu:22.04
 MAINTAINER nick
 WORKDIR /
 USER root
-RUN useradd -ms /bin/bash -p '$6$5RFdnXZJWWCQykyt$VJw5IXFNdh5qSsLXvKmR7U17BSjIrJR79X/L1qbgxww69vHf5sDiHxweKYsardD094iDK2FAKqBWGpnuy1LQa.' acpsvc \
-        && groupmod -g 2001 acpsvc \
-        && usermod -u 2001 acpsvc \
-        && apt-get update \
+RUN apt-get update \
         && apt-get install -y build-essential software-properties-common \
         && add-apt-repository main universe multiverse \
         && apt-get update \
@@ -20,6 +17,3 @@ RUN useradd -ms /bin/bash -p '$6$5RFdnXZJWWCQykyt$VJw5IXFNdh5qSsLXvKmR7U17BSjIrJ
         && /usr/sbin/update-locale LANG=ko_KR.UTF-8 \
         && echo Asia/Seoul > /etc/timezone
 ENTRYPOINT ["/sbin/init"]
-USER acpsvc
-COPY --chown=acpsvc kube-profile /
-RUN /bin/bash /profile/profile.sh
