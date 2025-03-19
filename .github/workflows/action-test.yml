@@ -16,7 +16,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: ${{ secrets.GHCR_USER }}
           password: ${{ secrets.GHCR_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v3
@@ -24,5 +24,5 @@ jobs:
           context: .
           file: ./Dockerfile
           psuh: true
-          tags: ghcr.io/${{ github.repository_owner }}/ubuntu-22.04--systemd:latest
+          tags: ghcr.io/${{ secrets.GHCR_USER }}/ubuntu-22.04--systemd:latest
       
