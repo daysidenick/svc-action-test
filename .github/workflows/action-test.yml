@@ -19,10 +19,7 @@ jobs:
           username: ${{ secrets.GHCR_USER }}
           password: ${{ secrets.GHCR_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: 192.168.0.170:5000/${{ secrets.GHCR_USER }}/ubuntu-22.04--systemd:latest
+        run: |
+          touch test.txt
+          echo "!! TEST !!" > test.txt
       
