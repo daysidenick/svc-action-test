@@ -6,7 +6,7 @@ on:
     branches: [ "master" ]
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, kube-master]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,5 +24,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ secrets.GHCR_USER }}/ubuntu-22.04--systemd:latest
+          tags: 192.168.0.170:5000/${{ secrets.GHCR_USER }}/ubuntu-22.04--systemd:latest
       
