@@ -8,16 +8,6 @@ jobs:
   build:
     runs-on: [self-hosted, kube-master]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup docker buildx
-        uses: docker/setup-buildx-action@v2
-      - name: Login docker registry(Github Packages)
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ secrets.GHCR_USER }}
-          password: ${{ secrets.GHCR_TOKEN }}
       - name: command test
         run: |
           touch test.txt
